@@ -7,3 +7,5 @@ def hello_world_view(request):
 def hello_py_view(request):
     return HttpResponse("Hello Pyton - Start Page")
 
+def hello_html_view(request):
+    return render(request, 'todos/hello.html')
