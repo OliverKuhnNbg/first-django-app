@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotAllowed
+from .forms import PersonForm
 
 def hello_world_view(request):
     return HttpResponse("Hello World")
@@ -34,3 +35,29 @@ def post_example(request):
 
 def submit_example(request):
         return render(request, 'todos/submit.html')
+
+
+def post_form_example(request):
+    if request.method == 'POST':
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            age = form.cleaned_data['age']
+            job = form.cleaned_data['job']
+            return HttpResponse(f'Your form post: <strong>{name}, {age}, {job}</strong>')
+    else:
+        return HttpResponseNotAllowed(['POST'])
+
+def submit_form_example(request):
+        form = PersonForm()
+        return render(request, 'todos/submit_form.html', {'form': form})
+
+def template_view(request):
+    context = {
+        "name": "Mike",
+        "age": 30,
+        "job": "Software Developer",
+        "skills": ["python", "SQL", "React", "Django"],
+    }
+
+    return render(request, 'todos/template_demo.html', context)

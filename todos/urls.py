@@ -11,4 +11,7 @@ urlpatterns = [
     path('search', views.search_query_view, name='search_query'),
     path('postapi', views.post_example, name='post_api'),
     path('submitapi', views.submit_example, name='submit_api'),
+    path('postformapi', views.post_form_example, name='post_form_api'),
+    path('submitformapi', views.submit_form_example, name='submit_form_api'),
+    path('template', views.template_view, name='template_view'),
 ]
