@@ -1,4 +1,5 @@
 from django import forms
+from .models import Todo
 
 class PersonForm(forms.Form):
     name = forms.CharField(max_length=100, required=True, label="your name")
@@ -7,6 +8,10 @@ class PersonForm(forms.Form):
 
 
 class TodoForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, required=True, label="your name")
-    age = forms.IntegerField(label="your age")
-    job = forms.CharField(max_length=100, required=False, label="your job")
+    class Meta:
+        model = Todo
+        fields = ['title', 'description', 'done', 'deadline', 'priority']
+
+        widgets = {
+            'deadline': forms.DateInput(attrs={'type': 'date'})
+        }
