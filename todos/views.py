@@ -70,7 +70,7 @@ def todos_view(request):
 
         if form.is_valid():
             todo = form.save()
-            return HttpResponseNotAllowed('Todo created!')
+            return HttpResponse('Todo created!')
 
     else:
         form = TodoForm()
